@@ -1,0 +1,36 @@
+<div class="container">
+
+  <h2>User List</h2>
+
+  <input
+    type="text"
+    placeholder="Search by name"
+    [(ngModel)] = "searchUser"
+    (ngModelChange)="onSearch()"
+    class="search-box"
+  />
+
+  <div *ngIf="isLoading" class="loader">Loading...</div>
+
+  <div *ngIf="errorMsg" class="error">{{ errorMsg }}</div>
+
+  <table *ngIf="!isLoading && !errorMsg" class="user-table">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Phone</th>
+        <th>Company</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let user of filteredUsers">
+        <td>{{ user.name }}</td>
+        <td>{{ user.email }}</td>
+        <td>{{ user.phone }}</td>
+        <td>{{ user.company.name }}</td>
+      </tr>
+    </tbody>
+  </table>
+
+</div>
